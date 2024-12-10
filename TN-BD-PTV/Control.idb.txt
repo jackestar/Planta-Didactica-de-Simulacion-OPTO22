@@ -1,0 +1,187 @@
+# REV = 1
+
+# PAC CONTROL TAG DATABASE DUMP
+# ----------------------------------------------------------------
+# NAME :         Z:\home\jackestar\Documents\Control\Planta Piloto (Regmy Nieves-Juan Galindez)\TN-BD-PTV\Control.idb
+# VERSION :      R9.4a
+# TIME/DATE :    18:38:30 12/7/2024
+# 
+# INSTRUCTIONS : This file gets written with the corresponding IDB file.
+#                It is not read by PAC Control. It may be used by other programs to 
+#                get basic information about the tag database.
+#                
+#                Each tag (e.g. variables, I/O units and points, charts, etc.) is 
+#                listed here. 
+#                
+#                More columns or tag types (e.g. TAG2) may be added in the future.
+#                
+#                
+# BITMASK INFO:  Here is the list of bitmasks used by PAC Control.
+#                More than one bit may be set for a given tag. Currently, the only types
+#                that can have more than one bit set at a time are digital points with 
+#                features (e.g. digital input with counter) or a pointer.
+#                
+#                BITMASK 0
+#                -------------------------------------------
+#                DIN_SMART                        0x40000000
+#                DIN_COUNTER                      0x00000001
+#                DIN_COUNTER_QUADRATURE           0x00000002
+#                DOUT_SMART                       0x10000000
+#                DOUT_TPO                         0x00010000
+#                DIN_ON_PULSE_MEAS                0x00000010
+#                DIN_OFF_PULSE_MEAS               0x00000020
+#                DIN_FREQUENCY                    0x00000040
+#                DIN_PERIOD                       0x00000080
+#                DIN_ON_TIME_TOTALIZER            0x00000100
+#                DIN_OFF_TIME_TOTALIZER           0x00000200
+#                
+#                BITMASK 1
+#                -------------------------------------------
+#                AIN                              0x00000001
+#                AOUT                             0x00000002
+#                PID_LOOP    (mistic)             0x00000200
+#                PID_LOOP_2  (OptoMMP)            0x00000004
+#                DIGITAL_EVENT_REACTION           0x00000008
+#                ANALOG_EVENT_REACTION            0x00000010
+#                EVENT_REACTION_GROUP             0x00000080
+#                CHART                            0x00000100
+#                
+#                BITMASK 2
+#                -------------------------------------------
+#                BOARD_SMART_DIGITAL              0x00000002
+#                BOARD_REMOTE_SIMPLE_DIGITAL      0x00000004
+#                BOARD_SMART_ANALOG               0x00000008
+#                BOARD_SMART_ANALOG_B200          0x00001000
+#                BOARD_SMART_DIGITAL_SNAP         0x00002000
+#                BOARD_SMART_ANALOG_SNAP          0x00004000
+#                BOARD_SMART_DIGITAL_B100         0X00010000
+#                BOARD_REMOTE_SIMPLE_DIGITAL_SNAP 0X00020000
+#                BOARD_DIGITAL_SNAP_64            0x00040000
+#                BOARD_MIXED_SNAP_64              0x00080000
+#                BOARD_DIGITAL_SNAP_UIO_64        0x00100000
+#                BOARD_MIXED_SNAP_UIO_64          0x00200000
+#                BOARD_MIXED_SNAP_UIO_AD64        0x00400000
+#                BOARD_MIXED_SNAP_SIO_AD64        0x00800000
+#                BOARD_SNAP_PAC_R1                0x10000000
+#                BOARD_SNAP_PAC_R2                0x20000000
+#                BOARD_GENERIC_OPTOMMP            0x40000000
+# 
+#                BITMASK 3
+#                -------------------------------------------
+#                VARIABLE_INTEGER                 0x00000008
+#                VARIABLE_FLOAT                   0x00000010
+#                VARIABLE_TIMER                   0x00000020
+#                VARIABLE_STRING                  0x00000040
+#                VARIABLE_POINTER                 0x80000000
+#                TABLE_INTEGER                    0x00000100
+#                TABLE_FLOAT                      0x00000200
+#                TABLE_STRING                     0x00000800
+#                TABLE_POINTER                    0x00001000
+#                VARIABLE_UP_TIMER                0X00002000
+#                VARIABLE_INTEGER_64              0X00004000
+#                TABLE_INTEGER_64                 0X00010000
+#                TABLE_NULL                       0X00020000
+#                VARIABLE_STREAM                  0x00040000
+
+
+
+
+#  (Please note that the TAG1 definition may have columns added in the future.
+#   Any new columns will be added to the right of the existing ones.)
+#   This file should be parsed accordingly.)
+
+# TAG1,NAME,ID,BITMASK_0,BITMASK_1,BITMASK_2,BITMASK_3,TABLE_LENGTH,STRING_WIDTH
+
+TAG1,A_Flujos                                          ,2    ,00000000,00000100,00000000,00000000,0    ,0   
+TAG1,A_Seleccion                                       ,16   ,00000000,00000100,00000000,00000000,0    ,0   
+TAG1,C_Compresor                                       ,15   ,00000000,00000100,00000000,00000000,0    ,0   
+TAG1,C_Indicadores_Presion                             ,14   ,00000000,00000100,00000000,00000000,0    ,0   
+TAG1,C_LlenadoVaciado_TQ1                              ,12   ,00000000,00000100,00000000,00000000,0    ,0   
+TAG1,C_LlenadoVaciado_TQ2                              ,11   ,00000000,00000100,00000000,00000000,0    ,0   
+TAG1,C_Termometros                                     ,13   ,00000000,00000100,00000000,00000000,0    ,0   
+TAG1,C_Torre_Enfriamiento                              ,18   ,00000000,00000100,00000000,00000000,0    ,0   
+TAG1,Calentamiento                                     ,4    ,00000000,00000100,00000000,00000000,0    ,0   
+TAG1,Enfriamiento                                      ,5    ,00000000,00000100,00000000,00000000,0    ,0   
+TAG1,Powerup                                           ,0    ,00000000,00000100,00000000,00000000,0    ,0   
+TAG1,A_aplicar                                         ,89   ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,A_ComboBox_1                                      ,88   ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,A_Datos_4                                         ,78   ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,A_flujo                                           ,42   ,00000000,00000000,00000000,00004000,0    ,0   
+TAG1,A_fondo                                           ,31   ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,A_seleccion_1                                     ,74   ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,A_seleccion_2                                     ,75   ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,A_seleccion_3                                     ,76   ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,A_Temp_TQ3                                        ,50   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,A_Temp_TQ3_Max                                    ,119  ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,A_TQ5                                             ,70   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,A_tuberia                                         ,46   ,00000000,00000000,00000000,00004000,0    ,0   
+TAG1,A_ventana_panel                                   ,39   ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,banda_i                                           ,130  ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,banda_p                                           ,135  ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,banda_s                                           ,129  ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,But_Start                                         ,111  ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,But_Stop                                          ,112  ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,C_BandaDiferencial                                ,116  ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,compresor_delay                                   ,137  ,00000000,00000000,00000000,00002000,0    ,0   
+TAG1,E_Calentamiento                                   ,114  ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,E_calentamiento_force                             ,136  ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,E_Enfriamiento                                    ,115  ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,E_Enfriamiento_force                              ,134  ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,E_Error_PTV                                       ,120  ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,E_Proporcion_PTV                                  ,133  ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,fe100                                             ,105  ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,flujo_B100                                        ,47   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,flujo_B200                                        ,109  ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,frec_B100                                         ,14   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,frec_B200                                         ,15   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,fy100                                             ,93   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,fy200a                                            ,103  ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,isOnPTV                                           ,123  ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,max_TQ1                                           ,23   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,max_TQ2                                           ,18   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,max_TQ4                                           ,107  ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,min_TQ1                                           ,21   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,min_TQ2                                           ,17   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,nivel_TQ1                                         ,11   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,nivel_TQ2                                         ,12   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,nivel_TQ4                                         ,106  ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,pcv200a                                           ,45   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,pcv300                                            ,44   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,pi100a                                            ,98   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,pi100b                                            ,99   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,pi100c                                            ,100  ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,pi200b                                            ,104  ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,presion_PI100B                                    ,27   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,puc001                                            ,71   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,puc002                                            ,91   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,puc003                                            ,92   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,S_calentamiento_1                                 ,82   ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,S_enfriamiento_1                                  ,79   ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,S_LlenadoTQ2_1                                    ,85   ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,Selector_panel                                    ,110  ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,Sp_Temp                                           ,54   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,Sp_TQ2                                            ,16   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,status_alarmas                                    ,26   ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,status_chart_A_Timer                              ,108  ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,status_chart_C_Compresor                          ,73   ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,status_chart_C_IndicadoresPresion                 ,102  ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,status_chart_C_termometros                        ,101  ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,status_chart_C_TQ1                                ,72   ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,status_chart_C_TQ2                                ,94   ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,status_chart_calentamiento                        ,51   ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,status_chart_enfriamiento                         ,52   ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,status_chart_Flujo                                ,37   ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,status_chart_seleccion                            ,90   ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,status_chart_TorreEnfriamiento                    ,113  ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,status_motores                                    ,36   ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,status_resistencia                                ,43   ,00000000,00000000,00000000,00000008,0    ,0   
+TAG1,status_valvulas                                   ,33   ,00000000,00000000,00000000,00004000,0    ,0   
+TAG1,T_ambiente                                        ,118  ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,ti300a                                            ,95   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,ti300b                                            ,96   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,ti300c                                            ,97   ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,Timer_1                                           ,53   ,00000000,00000000,00000000,00002000,0    ,0   
+TAG1,vel_calentamiento_r                               ,127  ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,vel_enfriamiento_a                                ,128  ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,vel_enfriamiento_p100                             ,131  ,00000000,00000000,00000000,00000010,0    ,0   
+TAG1,xcv100                                            ,2    ,00000000,00000000,00000000,00000010,0    ,0   

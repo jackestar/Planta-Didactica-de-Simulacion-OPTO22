@@ -1,0 +1,1529 @@
+
+\ ********************** PER File **********************
+
+?EXISTS DL.STAT SWAP DROP .IF 1 DL.STAT .THEN
+_END NEW $$$.RUN FORGET $$$.RUN
+GetPersistentTop  **Control**
+PersistentMAKECHECK
+
+\ ********************** CRN File **********************
+
+_END NEW $$$.RUN
+: FILENAME  ." Control " ;
+1 0 $VAR *_HSV_SEMA 
+1024 0 $VAR *_HSV_TEMP 
+200 0 $VAR *_HSV_INIT_IO 
+0 IVAR ^_HNV_INIT_IO 
+0 TASK  &_INIT_IO
+0 TASK &A_Flujos
+0 TASK &A_Seleccion
+0 TASK &C_Compresor
+0 TASK &C_Indicadores_Presion
+0 TASK &C_LlenadoVaciado_TQ1
+0 TASK &C_LlenadoVaciado_TQ2
+0 TASK &C_Termometros
+0 TASK &C_Torre_Enfriamiento
+0 TASK &Calentamiento
+0 TASK &Enfriamiento
+0 TASK &Powerup
+0 IVAR ^A_aplicar
+0 IVAR ^A_ComboBox_1
+0 IVAR ^A_Datos_4
+0 2IVAR ^A_flujo
+0 IVAR ^A_fondo
+0 IVAR ^A_seleccion_1
+0 IVAR ^A_seleccion_2
+0 IVAR ^A_seleccion_3
+0 FVAR ^A_Temp_TQ3
+0 FVAR ^A_Temp_TQ3_Max
+0 FVAR ^A_TQ5
+0 2IVAR ^A_tuberia
+0 IVAR ^A_ventana_panel
+0 FVAR ^banda_i
+0 IVAR ^banda_p
+0 FVAR ^banda_s
+0 IVAR ^But_Start
+0 IVAR ^But_Stop
+0 IVAR ^C_BandaDiferencial
+0 UTVAR ^compresor_delay
+0 IVAR ^E_Calentamiento
+0 IVAR ^E_calentamiento_force
+0 IVAR ^E_Enfriamiento
+0 IVAR ^E_Enfriamiento_force
+0 FVAR ^E_Error_PTV
+0 FVAR ^E_Proporcion_PTV
+0 FVAR ^fe100
+0 FVAR ^flujo_B100
+0 FVAR ^flujo_B200
+0 FVAR ^frec_B100
+0 FVAR ^frec_B200
+0 FVAR ^fy100
+0 FVAR ^fy200a
+1073741824 IVAR ^isOnPTV
+0 FVAR ^max_TQ1
+0 FVAR ^max_TQ2
+0 FVAR ^max_TQ4
+0 FVAR ^min_TQ1
+0 FVAR ^min_TQ2
+0 FVAR ^nivel_TQ1
+0 FVAR ^nivel_TQ2
+0 FVAR ^nivel_TQ4
+0 FVAR ^pcv200a
+0 FVAR ^pcv300
+0 FVAR ^pi100a
+0 FVAR ^pi100b
+0 FVAR ^pi100c
+0 FVAR ^pi200b
+0 FVAR ^presion_PI100B
+0 FVAR ^puc001
+0 FVAR ^puc002
+0 FVAR ^puc003
+0 IVAR ^S_calentamiento_1
+0 IVAR ^S_enfriamiento_1
+0 IVAR ^S_LlenadoTQ2_1
+0 IVAR ^Selector_panel
+0 FVAR ^Sp_Temp
+0 FVAR ^Sp_TQ2
+0 IVAR ^status_alarmas
+0 IVAR ^status_chart_A_Timer
+0 IVAR ^status_chart_C_Compresor
+0 IVAR ^status_chart_C_IndicadoresPresion
+0 IVAR ^status_chart_C_termometros
+0 IVAR ^status_chart_C_TQ1
+0 IVAR ^status_chart_C_TQ2
+0 IVAR ^status_chart_calentamiento
+0 IVAR ^status_chart_enfriamiento
+0 IVAR ^status_chart_Flujo
+0 IVAR ^status_chart_seleccion
+0 IVAR ^status_chart_TorreEnfriamiento
+0 IVAR ^status_motores
+0 IVAR ^status_resistencia
+0 2IVAR ^status_valvulas
+0 FVAR ^T_ambiente
+0 FVAR ^ti300a
+0 FVAR ^ti300b
+0 FVAR ^ti300c
+0 UTVAR ^Timer_1
+0 FVAR ^vel_calentamiento_r
+0 FVAR ^vel_enfriamiento_a
+0 FVAR ^vel_enfriamiento_p100
+0 FVAR ^xcv100
+
+: 2_0
+2 JUMP ;
+: 2_4
+^A_tuberia @@ 9  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^status_motores @@ 1  BitTest LAND  ^status_valvulas @@ 63  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  ^nivel_TQ1 @@ 0 I>F F> LAND  IF 
+^status_valvulas @@ 2  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 10  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^status_valvulas @@ 1  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 11  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^A_tuberia @@ 12  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+THEN 
+^xcv100 @@ 0 I>F F> IF 
+^A_tuberia @@ 13  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^status_valvulas @@ 4  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 14  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^A_tuberia @@ 12  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^A_tuberia @@ 26  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^status_valvulas @@ 14  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 15  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+THEN 
+THEN 
+^status_valvulas @@ 5  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 16  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+THEN 
+^status_valvulas @@ 6  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 17  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^A_tuberia @@ 32  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^status_valvulas @@ 7  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 18  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+THEN 
+^status_valvulas @@ 8  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 19  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^status_valvulas @@ 16  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 20  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+THEN 
+THEN 
+^status_valvulas @@ 9  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 21  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+THEN 
+^status_valvulas @@ 13  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 22  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^status_valvulas @@ 12  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 25  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+THEN 
+^pcv300 @@ 0 I>F F> IF 
+^A_tuberia @@ 24  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+THEN 
+^status_valvulas @@ 15  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+THEN 
+THEN 
+^status_valvulas @@ 11  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 24  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^pcv300 @@ 0 I>F F> IF 
+^A_tuberia @@ 25  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^status_valvulas @@ 12  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 22  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^status_valvulas @@ 15  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+THEN 
+THEN 
+THEN 
+THEN 
+THEN 
+THEN 
+THEN 
+THEN 
+^nivel_TQ2 @@ ^max_TQ2 @@ F= ^flujo_B100 @@ 0 I>F F> LAND  ^A_flujo @@ 16  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  IF 
+^A_tuberia @@ 27  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^status_valvulas @@ 20  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 28  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+ELSE 
+^A_tuberia @@ 28  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_tuberia @! 
+THEN 
+^status_valvulas @@ 10  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 29  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+THEN 
+ELSE 
+^A_flujo @@ 27  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_tuberia @@ 28  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_tuberia @! 
+^A_flujo @@ 29  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+3 JUMP ;
+: 2_7
+^nivel_TQ1 @@ ^min_TQ1 @@ F>= IF 
+^A_tuberia @@ 7  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^status_valvulas @@ 24  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 8  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+ELSE 
+^A_tuberia @@ 8  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_tuberia @! 
+THEN 
+^status_valvulas @@ 63  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 9  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+THEN 
+THEN 
+1 JUMP ;
+: 2_8
+^status_valvulas @@ 18  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 1  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^status_valvulas @@ 19  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 2  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^status_valvulas @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 6  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+THEN 
+THEN 
+^status_valvulas @@ 20  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 3  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^A_tuberia @@ 6  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^status_valvulas @@ 21  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 4  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+ELSE 
+^A_tuberia @@ 4  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_tuberia @! 
+THEN 
+^status_valvulas @@ 22  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 5  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+ELSE 
+^A_tuberia @@ 5  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_tuberia @! 
+THEN 
+^status_valvulas @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 2  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+THEN 
+ELSE 
+^A_tuberia @@ 4  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_tuberia @! 
+^A_tuberia @@ 5  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_tuberia @! 
+THEN 
+ELSE 
+^A_tuberia @@ 4  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_tuberia @! 
+^A_tuberia @@ 5  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_tuberia @! 
+THEN 
+-2 JUMP ;
+: 2_20
+^nivel_TQ2 @@ 0 I>F F> IF 
+^A_tuberia @@ 30  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^status_valvulas @@ 17  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 31  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+THEN 
+THEN 
+^nivel_TQ2 @@ 20 I>F F> IF 
+^A_tuberia @@ 18  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^status_valvulas @@ 7  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 32  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^status_valvulas @@ 8  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_tuberia @@ 19  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+THEN 
+THEN 
+THEN 
+2 JUMP ;
+: 2_23
+^A_tuberia @@ 9  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^status_motores @@ 1  BitTest LAND  ^status_valvulas @@ 63  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  ^nivel_TQ1 @@ 0 I>F F> LAND  IF 
+^A_flujo @@ 9  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+^status_valvulas @@ 2  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 10  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+^status_valvulas @@ 1  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 11  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+^A_flujo @@ 12  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+ELSE 
+^A_flujo @@ 11  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 12  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+^xcv100 @@ 0 I>F F> IF 
+^A_flujo @@ 13  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+^status_valvulas @@ 4  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 14  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+^status_valvulas @@ 14  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 15  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+ELSE 
+^A_flujo @@ 15  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+ELSE 
+^A_flujo @@ 14  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+^status_valvulas @@ 5  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 16  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+ELSE 
+^A_flujo @@ 16  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+^status_valvulas @@ 6  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 17  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+^status_valvulas @@ 7  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 18  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+ELSE 
+^A_flujo @@ 18  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+^status_valvulas @@ 8  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 19  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+^status_valvulas @@ 16  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 20  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+ELSE 
+^A_flujo @@ 20  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+ELSE 
+^A_flujo @@ 19  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 20  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+^status_valvulas @@ 9  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 21  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+ELSE 
+^A_flujo @@ 21  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+^status_valvulas @@ 13  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 22  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+^status_valvulas @@ 12  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 25  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+ELSE 
+^A_flujo @@ 25  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+^pcv300 @@ 0 I>F F> IF 
+^A_flujo @@ 24  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+ELSE 
+^A_flujo @@ 24  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+^status_valvulas @@ 15  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+ELSE 
+^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+ELSE 
+^A_flujo @@ 22  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+^status_valvulas @@ 11  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 24  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+^pcv300 @@ 0 I>F F> IF 
+^A_flujo @@ 25  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+^status_valvulas @@ 12  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 22  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+^status_valvulas @@ 15  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+ELSE 
+^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+ELSE 
+^status_valvulas @@ 13  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= IF 
+^A_flujo @@ 22  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+THEN 
+ELSE 
+^A_flujo @@ 25  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+ELSE 
+^A_flujo @@ 24  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 25  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+ELSE 
+^A_flujo @@ 17  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 18  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 19  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 20  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 21  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 22  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 24  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 25  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+ELSE 
+^A_flujo @@ 13  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 14  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 15  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 16  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 17  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 18  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 19  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 20  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 21  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 22  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 24  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 25  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+ELSE 
+^A_flujo @@ 10  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 11  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 13  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 14  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 15  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 16  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 17  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 18  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 19  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 20  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 21  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 22  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 24  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 25  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+ELSE 
+^A_flujo @@ 9  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 10  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 11  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 12  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 13  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 14  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 15  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 16  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 17  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 18  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 19  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 20  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 21  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 22  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 24  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 25  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+0 JUMP ;
+: 2_33
+^nivel_TQ1 @@ 1.121590e+000 ^frec_B100 @@ 60 I>F F/ F* ^xcv100 @@ 100 I>F F/ F* F>= IF 
+1.121590e+000 ^frec_B100 @@ 60 I>F F/ F* ^xcv100 @@ 100 I>F F/ F* ^status_motores @@ 1  BitTest I>F  F* ^flujo_B100 @! 
+ELSE 
+0 I>F ^flujo_B100 @! 
+THEN 
+^A_tuberia @@ 9  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^status_motores @@ 1  BitTest LAND  ^status_valvulas @@ 63  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  ^nivel_TQ1 @@ 0 I>F F> LAND  IF 
+^A_flujo @@ 12  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^A_flujo @@ 16  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LOR  ^A_flujo @@ 21  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LOR  ^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LOR  ^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LOR  IF 
+ELSE 
+^status_alarmas @@ 3  >MASK OR ^status_alarmas @! 
+THEN 
+THEN 
+1 JUMP ;
+: 2_39
+^status_valvulas @@ 18  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^A_tuberia @@ 1  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  IF 
+^A_flujo @@ 1  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+^status_valvulas @@ 19  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 2  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+ELSE 
+^status_valvulas @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^A_flujo @@ 3  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  IF 
+^A_flujo @@ 2  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+ELSE 
+^A_flujo @@ 2  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+THEN 
+^status_valvulas @@ 20  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 3  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+^status_valvulas @@ 21  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 4  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+ELSE 
+^A_flujo @@ 4  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+^status_valvulas @@ 22  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 5  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+ELSE 
+^A_flujo @@ 5  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+^status_valvulas @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 2  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+ELSE 
+^status_valvulas @@ 19  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 2  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+ELSE 
+^A_flujo @@ 2  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+THEN 
+ELSE 
+^A_flujo @@ 3  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 4  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 5  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^status_valvulas @@ 19  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 2  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+ELSE 
+^A_flujo @@ 2  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+THEN 
+ELSE 
+^A_flujo @@ 1  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 2  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 3  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 4  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 5  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+^nivel_TQ2 @@ ^max_TQ2 @@ F= ^flujo_B100 @@ 0 I>F F> LAND  ^A_flujo @@ 16  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  IF 
+^A_flujo @@ 27  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+^status_valvulas @@ 10  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 29  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+ELSE 
+^A_flujo @@ 29  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+ELSE 
+^A_flujo @@ 27  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_tuberia @@ 28  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_tuberia @! 
+^A_flujo @@ 29  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+^status_motores @@ 2  BitTest ^status_valvulas @@ 14  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  IF 
+THEN 
+-7 JUMP ;
+: 2_47
+^status_motores @@ 2  BitTest IF 
+^status_valvulas @@ 7  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^status_valvulas @@ 8  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^nivel_TQ2 @@ 20 I>F F> IF 
+^A_flujo @@ 30  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+^A_tuberia @@ 15  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^status_valvulas @@ 14  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 31  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+^A_tuberia @@ 26  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^A_tuberia @@ 12  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+ELSE 
+^A_flujo @@ 31  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+ELSE 
+^A_flujo @@ 31  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 30  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+ELSE 
+^A_flujo @@ 30  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 31  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+ELSE 
+^A_flujo @@ 30  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 31  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+^status_valvulas @@ 16  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 32  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+^A_tuberia @@ 19  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^A_tuberia @@ 15  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^status_valvulas @@ 14  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^A_flujo @@ 33  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_flujo @! 
+^A_tuberia @@ 26  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+^A_tuberia @@ 12  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+ELSE 
+^A_flujo @@ 33  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+ELSE 
+^A_flujo @@ 33  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 32  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+ELSE 
+^A_flujo @@ 30  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 31  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 32  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_flujo @@ 33  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+^nivel_TQ4 @@ 10 I>F F> IF 
+^A_tuberia @@ 20  I>D 1.. 2SWAP D>I 2SHIFT DOR ^A_tuberia @! 
+THEN 
+0 JUMP ;
+: 2_56
+2.195000e-001 ^flujo_B200 @! 
+-10 JUMP ;
+T: T2
+DUMMY
+2_0
+2_4
+2_7
+2_8
+2_20
+2_23
+2_33
+2_39
+2_47
+2_56
+T;
+&A_Flujos ' T2 SETTASK
+: 16_0
+0 JUMP ;
+: 16_1
+^A_aplicar @@ 1 = IF 
+0 ^A_aplicar @! 
+^A_ComboBox_1 @@ CASE 
+1 OF 
+^A_seleccion_1 @@ ^S_calentamiento_1 @! 
+ENDOF 
+2 OF 
+^A_seleccion_1 @@ ^S_enfriamiento_1 @! 
+ENDOF 
+3 OF 
+2 ^S_LlenadoTQ2_1 @! 
+ENDOF 
+ENDCASE 
+THEN 
+0 JUMP ;
+: 16_4
+^A_aplicar @@ 1 = IF 
+0 ^A_aplicar @! 
+^A_ComboBox_1 @@ CASE 
+1 OF 
+^A_seleccion_1 @@ ^S_calentamiento_1 @! 
+ENDOF 
+2 OF 
+^A_seleccion_1 @@ ^S_enfriamiento_1 @! 
+ENDOF 
+3 OF 
+2 ^S_LlenadoTQ2_1 @! 
+ENDOF 
+ENDCASE 
+THEN 
+0 JUMP ;
+: 16_7
+^But_Start @@ 1 = IF 
+0 ^But_Start @! 
+^Selector_panel @@ ^S_calentamiento_1 @! 
+^Selector_panel @@ ^S_enfriamiento_1 @! 
+1 ^S_LlenadoTQ2_1 @! 
+THEN 
+0 JUMP ;
+: 16_10
+^But_Stop @@ 1 = IF 
+0 ^But_Stop @! 
+3 ^S_calentamiento_1 @! 
+3 ^S_enfriamiento_1 @! 
+3 ^S_LlenadoTQ2_1 @! 
+^status_motores @@ 1  >MASK NOT AND ^status_motores @! 
+^status_motores @@ 2  >MASK NOT AND ^status_motores @! 
+^status_motores @@ 3  >MASK NOT AND ^status_motores @! 
+^status_motores @@ 4  >MASK NOT AND ^status_motores @! 
+THEN 
+-5 JUMP ;
+T: T16
+DUMMY
+16_0
+16_1
+16_4
+16_7
+16_10
+T;
+&A_Seleccion ' T16 SETTASK
+: 15_0
+6 JUMP ;
+: 15_3
+^puc003 @@ 20 I>F F< IF 
+^fy100 @@ ^puc003 @@ F>= IF 
+^puc003 @@ ^fy100 @! 
+THEN 
+THEN 
+^fy100 @@ 20 I>F F>= IF 
+20 I>F ^fy100 @! 
+THEN 
+^fy100 @@ 0 I>F F<= IF 
+0 I>F ^fy100 @! 
+THEN 
+0 JUMP ;
+: 15_6
+5 I>F ^fy100 @@ F* ^xcv100 @! 
+5 JUMP ;
+: 15_9
+^puc001 @@ ^puc002 @! 
+^puc002 @@ 20 I>F F>= IF 
+20 I>F ^puc002 @! 
+THEN 
+-3 JUMP ;
+: 15_10
+^puc001 @@ 1.250000e-001 F* ^puc003 @@ F+ ^puc003 @! 
+^puc003 @@ 20 I>F F>= IF 
+20 I>F ^puc003 @! 
+THEN 
+-2 JUMP ;
+: 15_11
+  1000    DELAY
+-6 JUMP ;
+: 15_13
+^status_motores @@ 4  BitTest IF 
+^A_TQ5 @@ 1.600000e-001 F* ^puc001 @@ F+ ^puc001 @! 
+THEN 
+^puc001 @@ 40 I>F F>= IF 
+40 I>F ^puc001 @! 
+THEN 
+^A_TQ5 @@ 60 I>F F>= IF 
+40 I>F ^puc001 @! 
+THEN 
+^A_TQ5 @@ 40 I>F F< IF 
+^A_TQ5 @@ 1.600000e-001 F* ^puc001 @! 
+THEN 
+-3 JUMP ;
+: 15_15
+^status_motores @@ 4  BitTest IF 
+^A_TQ5 @@ 3.654000e+000 F+ ^A_TQ5 @! 
+^A_TQ5 @@ 60 I>F F>= IF 
+60 I>F ^A_TQ5 @! 
+^status_motores @@ 5  >MASK OR ^status_motores @! 
+^status_motores @@ 4  >MASK NOT AND ^status_motores @! 
+THEN 
+THEN 
+^status_motores @@ 5  BitTest IF 
+^A_TQ5 @@ 40 I>F F< IF 
+^status_motores @@ 4  >MASK OR ^status_motores @! 
+^status_motores @@ 5  >MASK NOT AND ^status_motores @! 
+THEN 
+THEN 
+^A_TQ5 @@ 0 I>F F<= IF 
+0 I>F ^A_TQ5 @! 
+THEN 
+-2 JUMP ;
+: 15_20
+^puc003 @@ 20 I>F F< IF 
+^fy200a @@ ^puc003 @@ F>= IF 
+^puc003 @@ ^fy200a @! 
+THEN 
+THEN 
+^fy200a @@ 20 I>F F>= IF 
+20 I>F ^fy200a @! 
+THEN 
+^fy200a @@ 0 I>F F<= IF 
+0 I>F ^fy200a @! 
+THEN 
+0 JUMP ;
+: 15_21
+5 I>F ^fy200a @@ F* ^pcv200a @! 
+-5 JUMP ;
+T: T15
+DUMMY
+15_0
+15_3
+15_6
+15_9
+15_10
+15_11
+15_13
+15_15
+15_20
+15_21
+T;
+&C_Compresor ' T15 SETTASK
+: 14_0
+0 JUMP ;
+: 14_1
+^A_flujo @@ 16  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^status_valvulas @@ 6  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  ^status_valvulas @@ 4  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  IF 
+^status_valvulas @@ 20  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^frec_B100 @@ ^xcv100 @@ F/ 13 I>F F* ^pi100a @! 
+ELSE 
+1.300000e-002 ^frec_B100 @@ 54 I>F F/ F* ^xcv100 @@ 50 I>F F/ F* ^pi100a @! 
+THEN 
+THEN 
+^A_flujo @@ 16  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^status_valvulas @@ 6  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  ^status_valvulas @@ 4  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  IF 
+^status_valvulas @@ 20  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+1.166000e+000 ^frec_B100 @@ F* 2.098000e+001 F- ^pi100a @! 
+ELSE 
+1.300000e-002 ^frec_B100 @@ 54 I>F F/ F* ^xcv100 @@ 50 I>F F/ F* ^pi100a @! 
+THEN 
+THEN 
+^A_flujo @@ 10  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^status_valvulas @@ 6  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  ^status_valvulas @@ 4  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  IF 
+^status_valvulas @@ 5  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= ^xcv100 @@ 0 I>F F<= LOR  IF 
+40 I>F ^frec_B100 @@ 60 I>F F/ F* ^pi100a @! 
+THEN 
+THEN 
+0 JUMP ;
+: 14_2
+^A_flujo @@ 16  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^status_valvulas @@ 6  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  ^status_valvulas @@ 4  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  IF 
+^status_valvulas @@ 20  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+4.780000e-002 ^xcv100 @@ F* 1.450000e+000 F+ ^pi100b @! 
+ELSE 
+2.500000e-002 ^frec_B100 @@ 54 I>F F/ F* ^xcv100 @@ 50 I>F F/ F* ^pi100b @! 
+THEN 
+THEN 
+^A_flujo @@ 16  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^status_valvulas @@ 6  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  ^status_valvulas @@ 4  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  IF 
+^status_valvulas @@ 20  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+1.360000e+000 ^frec_B100 @@ F* 2.660000e+001 F- ^pi100b @! 
+ELSE 
+2.500000e-002 ^frec_B100 @@ 54 I>F F/ F* ^xcv100 @@ 50 I>F F/ F* ^pi100b @! 
+THEN 
+THEN 
+^A_flujo @@ 13  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^status_valvulas @@ 6  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  ^status_valvulas @@ 4  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  ^status_valvulas @@ 5  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  IF 
+40 I>F ^frec_B100 @@ 60 I>F F/ F* ^pi100b @! 
+THEN 
+0 JUMP ;
+: 14_3
+^A_flujo @@ 16  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^status_valvulas @@ 6  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  ^status_valvulas @@ 4  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  IF 
+^status_valvulas @@ 20  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^frec_B100 @@ ^xcv100 @@ F/ 1.200000e+000 F+ ^pi100c @! 
+ELSE 
+3.000000e-002 ^frec_B100 @@ 54 I>F F/ F* ^xcv100 @@ 50 I>F F/ F* ^pi100c @! 
+THEN 
+THEN 
+^A_flujo @@ 16  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^status_valvulas @@ 6  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  ^status_valvulas @@ 4  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  IF 
+^status_valvulas @@ 20  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+1.303000e+000 ^frec_B100 @@ F* 2.719000e+001 F- ^pi100c @! 
+ELSE 
+3.000000e-002 ^frec_B100 @@ 54 I>F F/ F* ^xcv100 @@ 50 I>F F/ F* ^pi100c @! 
+THEN 
+THEN 
+^A_flujo @@ 13  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^status_valvulas @@ 6  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  ^status_valvulas @@ 4  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  ^status_valvulas @@ 5  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  IF 
+40 I>F ^frec_B100 @@ 60 I>F F/ F* ^pi100c @! 
+THEN 
+1 JUMP ;
+: 14_8
+  1000    DELAY
+-5 JUMP ;
+: 14_11
+^A_flujo @@ 16  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^status_valvulas @@ 10  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  ^status_valvulas @@ 17  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  IF 
+^status_valvulas @@ 20  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+ELSE 
+^pcv200a @@ 100 I>F F/ 4.500000e-002 F* ^pi200b @@ F+ ^pi200b @! 
+THEN 
+THEN 
+^A_flujo @@ 31  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^pi200b @@ 5.500000e-002 F- ^pi200b @! 
+THEN 
+0 JUMP ;
+: 14_14
+^frec_B100 @@ 54 I>F F/ 1.122000e-002 F* ^xcv100 @@ F* 1000 I>F F* ^fe100 @! 
+-3 JUMP ;
+T: T14
+DUMMY
+14_0
+14_1
+14_2
+14_3
+14_8
+14_11
+14_14
+T;
+&C_Indicadores_Presion ' T14 SETTASK
+: 12_0
+0 JUMP ;
+: 12_1
+^A_flujo @@ 2  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^nivel_TQ1 @@ 1.660000e-001 F+ ^nivel_TQ1 @! 
+^nivel_TQ1 @@ ^max_TQ1 @@ F>= IF 
+^max_TQ1 @@ ^nivel_TQ1 @! 
+THEN 
+THEN 
+^A_flujo @@ 31  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^A_flujo @@ 33  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LOR  IF 
+^nivel_TQ1 @@ ^flujo_B200 @@ F+ ^nivel_TQ1 @! 
+^nivel_TQ1 @@ ^max_TQ1 @@ F>= IF 
+^max_TQ1 @@ ^nivel_TQ1 @! 
+THEN 
+THEN 
+0 JUMP ;
+: 12_2
+^nivel_TQ1 @@ ^min_TQ1 @@ F<= IF 
+^status_alarmas @@ 1  >MASK OR ^status_alarmas @! 
+THEN 
+^nivel_TQ1 @@ 0 I>F F<= IF 
+0 I>F ^nivel_TQ1 @! 
+THEN 
+^A_flujo @@ 16  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^nivel_TQ2 @@ 302 I>F F< LAND  IF 
+^nivel_TQ1 @@ ^flujo_B100 @@ F- ^nivel_TQ1 @! 
+THEN 
+^nivel_TQ2 @@ 3.028300e+002 F>= ^flujo_B100 @@ 0 I>F F> LAND  ^A_flujo @@ 16  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  IF 
+^status_valvulas @@ 20  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^nivel_TQ1 @@ ^flujo_B100 @@ F- ^nivel_TQ1 @! 
+THEN 
+^status_valvulas @@ 10  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^nivel_TQ1 @@ ^nivel_TQ1 @! 
+^status_valvulas @@ 10  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^status_valvulas @! 
+THEN 
+THEN 
+^A_tuberia @@ 8  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^nivel_TQ1 @@ 1.763000e+000 F- ^nivel_TQ1 @! 
+THEN 
+^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^A_flujo @@ 21  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  IF 
+^A_flujo @@ 22  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^status_valvulas @@ 13  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= IF 
+^nivel_TQ1 @@ ^pcv300 @@ 100 I>F F/ ^flujo_B100 @@ F* F- ^nivel_TQ1 @! 
+THEN 
+^status_valvulas @@ 12  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= ^A_flujo @@ 25  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LOR  IF 
+^nivel_TQ1 @@ ^flujo_B100 @@ F- ^nivel_TQ1 @! 
+THEN 
+^nivel_TQ1 @@ ^pcv300 @@ 100 I>F F/ ^flujo_B100 @@ F* F- ^nivel_TQ1 @! 
+THEN 
+THEN 
+^A_flujo @@ 21  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  IF 
+^nivel_TQ1 @@ ^flujo_B100 @@ F- ^nivel_TQ1 @! 
+THEN 
+^A_flujo @@ 21  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  IF 
+^nivel_TQ1 @@ ^flujo_B100 @@ F- ^nivel_TQ1 @! 
+THEN 
+0 JUMP ;
+: 12_3
+  1000    DELAY
+-4 JUMP ;
+T: T12
+DUMMY
+12_0
+12_1
+12_2
+12_3
+T;
+&C_LlenadoVaciado_TQ1 ' T12 SETTASK
+: 11_0
+8 JUMP ;
+: 11_5
+  1000    DELAY
+-2 JUMP ;
+: 11_9
+^status_motores @@ 1  >MASK NOT AND ^status_motores @! 
+^status_motores @@ 2  >MASK NOT AND ^status_motores @! 
+0 JUMP ;
+: 11_10
+^A_flujo @@ 16  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^A_flujo @@ 18  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LOR  IF 
+^A_flujo @@ 11  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= ^A_flujo @@ 14  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  ^A_flujo @@ 17  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  IF 
+^nivel_TQ2 @@ ^flujo_B100 @@ F+ ^nivel_TQ2 @! 
+THEN 
+^A_flujo @@ 11  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^A_flujo @@ 14  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  ^A_flujo @@ 17  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  IF 
+THEN 
+^A_flujo @@ 11  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^A_flujo @@ 14  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  ^A_flujo @@ 17  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  IF 
+THEN 
+^A_flujo @@ 11  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^A_flujo @@ 14  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  ^A_flujo @@ 17  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  IF 
+THEN 
+^A_flujo @@ 11  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= ^A_flujo @@ 14  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  ^A_flujo @@ 17  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  IF 
+THEN 
+^A_flujo @@ 11  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= ^A_flujo @@ 14  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  ^A_flujo @@ 17  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  IF 
+THEN 
+^nivel_TQ2 @@ ^max_TQ2 @@ F>= IF 
+^max_TQ2 @@ ^nivel_TQ2 @! 
+THEN 
+ELSE 
+^A_flujo @@ 27  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+^A_tuberia @@ 28  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_tuberia @! 
+^A_flujo @@ 29  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^A_flujo @! 
+THEN 
+1 JUMP ;
+: 11_11
+-2 JUMP ;
+: 11_23
+^status_motores @@ 2  BitTest ^A_flujo @@ 31  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  ^status_valvulas @@ 8  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  IF 
+^nivel_TQ2 @@ ^flujo_B200 @@ F- ^nivel_TQ2 @! 
+THEN 
+^nivel_TQ2 @@ 0 I>F F> ^status_valvulas @@ 17  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  IF 
+^status_valvulas @@ 20  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^nivel_TQ2 @@ 2.234000e+000 F- ^nivel_TQ2 @! 
+ELSE 
+^nivel_TQ2 @@ 1.347000e+000 F- ^nivel_TQ2 @! 
+THEN 
+THEN 
+-5 JUMP ;
+: 11_34
+-3 JUMP ;
+: 11_16
+TRUE
+  ^S_LlenadoTQ2_1 @@ 
+  3    =
+LAND
+IF -6 ELSE -8 THEN JUMP ;
+: 11_17
+TRUE
+  ^S_LlenadoTQ2_1 @@ 
+  2    =
+LAND
+IF -6 ELSE -2 THEN JUMP ;
+: 11_18
+TRUE
+  ^S_LlenadoTQ2_1 @@ 
+  1    =
+LAND
+IF -4 ELSE -2 THEN JUMP ;
+T: T11
+DUMMY
+11_0
+11_5
+11_9
+11_10
+11_11
+11_23
+11_34
+11_16
+11_17
+11_18
+T;
+&C_LlenadoVaciado_TQ2 ' T11 SETTASK
+: 13_0
+0 JUMP ;
+: 13_1
+^status_resistencia @@ 1 = IF 
+1.800000e-002 ^A_Temp_TQ3 @@ F+ ^ti300a @! 
+^ti300a @@ 100 I>F F>= IF 
+100 I>F ^ti300a @! 
+THEN 
+THEN 
+^A_flujo @@ 22  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^A_Temp_TQ3 @@ 25 I>F F> LAND  IF 
+^status_valvulas @@ 13  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= ^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  IF 
+^A_Temp_TQ3 @@ 4.000000e-002 ^frec_B100 @@ 100 I>F F/ F* ^xcv100 @@ 100 I>F F/ F* ^pcv300 @@ 100 I>F F/ F* F- ^ti300a @! 
+THEN 
+^status_valvulas @@ 12  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= ^A_flujo @@ 25  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LOR  ^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  IF 
+^A_Temp_TQ3 @@ 4.000000e-002 ^frec_B100 @@ 100 I>F F/ F* ^xcv100 @@ 100 I>F F/ F* F- ^ti300a @! 
+THEN 
+^A_Temp_TQ3 @@ 4.000000e-002 ^frec_B100 @@ 100 I>F F/ F* ^xcv100 @@ 100 I>F F/ F* ^pcv300 @@ 100 I>F F/ F* F- ^ti300a @! 
+THEN 
+0 JUMP ;
+: 13_2
+^status_resistencia @@ 1 = IF 
+1.800000e-002 ^A_Temp_TQ3 @@ F+ ^ti300b @! 
+^ti300b @@ 100 I>F F>= IF 
+100 I>F ^ti300b @! 
+THEN 
+THEN 
+^A_flujo @@ 22  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^A_Temp_TQ3 @@ 25 I>F F> LAND  IF 
+^status_valvulas @@ 13  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= ^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  IF 
+^A_Temp_TQ3 @@ 4.000000e-002 ^frec_B100 @@ 100 I>F F/ F* ^xcv100 @@ 100 I>F F/ F* ^pcv300 @@ 100 I>F F/ F* F- ^ti300b @! 
+THEN 
+^status_valvulas @@ 12  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= ^A_flujo @@ 25  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LOR  ^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  IF 
+^A_Temp_TQ3 @@ 4.000000e-002 ^frec_B100 @@ 100 I>F F/ F* ^xcv100 @@ 100 I>F F/ F* F- ^ti300b @! 
+THEN 
+^A_Temp_TQ3 @@ 4.000000e-002 ^frec_B100 @@ 100 I>F F/ F* ^xcv100 @@ 100 I>F F/ F* ^pcv300 @@ 100 I>F F/ F* F- ^ti300b @! 
+THEN 
+0 JUMP ;
+: 13_3
+^status_resistencia @@ 1 = IF 
+1.800000e-002 ^A_Temp_TQ3 @@ F+ ^ti300c @! 
+^ti300c @@ 100 I>F F>= IF 
+100 I>F ^ti300c @! 
+THEN 
+THEN 
+^A_flujo @@ 22  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^A_Temp_TQ3 @@ 25 I>F F> LAND  IF 
+^status_valvulas @@ 13  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= ^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  IF 
+^A_Temp_TQ3 @@ 6.000000e-002 ^frec_B100 @@ 100 I>F F/ F* ^xcv100 @@ 100 I>F F/ F* ^pcv300 @@ 100 I>F F/ F* F- ^ti300c @! 
+THEN 
+^status_valvulas @@ 12  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= ^A_flujo @@ 25  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LOR  ^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  IF 
+^A_Temp_TQ3 @@ 6.000000e-002 ^frec_B100 @@ 100 I>F F/ F* ^xcv100 @@ 100 I>F F/ F* F- ^ti300c @! 
+THEN 
+^A_Temp_TQ3 @@ 6.000000e-002 ^frec_B100 @@ 100 I>F F/ F* ^xcv100 @@ 100 I>F F/ F* ^pcv300 @@ 100 I>F F/ F* F- ^ti300c @! 
+THEN 
+-4 JUMP ;
+T: T13
+DUMMY
+13_0
+13_1
+13_2
+13_3
+T;
+&C_Termometros ' T13 SETTASK
+: 18_0
+1 JUMP ;
+: 18_1
+^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^A_flujo @@ 21  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  IF 
+^A_flujo @@ 22  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^status_valvulas @@ 13  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= IF 
+^nivel_TQ4 @@ ^pcv300 @@ 100 I>F F/ ^flujo_B100 @@ F* F+ ^nivel_TQ4 @! 
+THEN 
+^status_valvulas @@ 12  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= ^A_flujo @@ 25  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LOR  IF 
+^nivel_TQ4 @@ ^flujo_B100 @@ F+ ^nivel_TQ4 @! 
+THEN 
+^nivel_TQ4 @@ ^pcv300 @@ 100 I>F F/ ^flujo_B100 @@ F* F+ ^nivel_TQ4 @! 
+THEN 
+THEN 
+^nivel_TQ4 @@ ^max_TQ4 @@ F>= IF 
+^max_TQ4 @@ ^nivel_TQ4 @! 
+THEN 
+^A_flujo @@ 21  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LAND  IF 
+^nivel_TQ4 @@ ^flujo_B100 @@ F+ ^nivel_TQ4 @! 
+THEN 
+^A_flujo @@ 21  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  IF 
+^nivel_TQ4 @@ ^flujo_B100 @@ F+ ^nivel_TQ4 @! 
+THEN 
+1 JUMP ;
+: 18_2
+-2 JUMP ;
+: 18_3
+^A_flujo @@ 33  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> IF 
+^nivel_TQ4 @@ 0 I>F F> IF 
+^nivel_TQ4 @@ ^flujo_B200 @@ F- ^nivel_TQ4 @! 
+THEN 
+THEN 
+0 JUMP ;
+: 18_9
+  1000    DELAY
+-5 JUMP ;
+T: T18
+DUMMY
+18_0
+18_1
+18_2
+18_3
+18_9
+T;
+&C_Torre_Enfriamiento ' T18 SETTASK
+: 4_0
+7 JUMP ;
+: 4_7
+0 ^status_resistencia @! 
+2 JUMP ;
+: 4_8
+^status_resistencia @@ 1 = IF 
+^A_Temp_TQ3 @@ ^vel_calentamiento_r @@ F+ ^A_Temp_TQ3 @! 
+^A_Temp_TQ3 @@ ^A_Temp_TQ3_Max @@ F>= IF 
+^A_Temp_TQ3_Max @@ ^A_Temp_TQ3 @! 
+THEN 
+THEN 
+1 JUMP ;
+: 4_9
+^E_Calentamiento @@ CASE 
+1 OF 
+0 I>F ^banda_i @! 
+0 I>F ^banda_s @! 
+^A_Temp_TQ3 @@ ^Sp_Temp @@ F>= IF 
+0 ^status_resistencia @! 
+ELSE 
+1 ^status_resistencia @! 
+THEN 
+ENDOF 
+2 OF 
+^banda_p @@ IF 
+^Sp_Temp @@ ^Sp_Temp @@ ^C_BandaDiferencial @@F F* 100 I>F F/ F- ^banda_i @! 
+^Sp_Temp @@ ^Sp_Temp @@ ^C_BandaDiferencial @@F F* 100 I>F F/ F+ ^banda_s @! 
+^status_resistencia @@ 1 = IF 
+^A_Temp_TQ3 @@ ^banda_s @@ F>= IF 
+0 ^status_resistencia @! 
+THEN 
+ELSE 
+^A_Temp_TQ3 @@ ^banda_i @@ F<= IF 
+1 ^status_resistencia @! 
+THEN THEN 
+ELSE 
+^Sp_Temp @@ ^C_BandaDiferencial @@ 2 / I>F F- ^banda_i @! 
+^Sp_Temp @@ ^C_BandaDiferencial @@ 2 / I>F F+ ^banda_s @! 
+^banda_i @@ ^T_ambiente @@ F< IF 
+^T_ambiente @@ ^banda_i @! 
+THEN 
+^banda_s @@ ^A_Temp_TQ3_Max @@ F> IF 
+^A_Temp_TQ3_Max @@ ^banda_s @! 
+THEN 
+^status_resistencia @@ 1 = IF 
+^A_Temp_TQ3 @@ ^banda_s @@ F>= IF 
+0 ^status_resistencia @! 
+THEN 
+ELSE 
+^A_Temp_TQ3 @@ ^banda_i @@ F<= IF 
+1 ^status_resistencia @! 
+THEN THEN 
+THEN 
+ENDOF 
+0 I>F ^banda_i @! 
+0 I>F ^banda_s @! 
+0 ^status_resistencia @! 
+ENDCASE 
+-2 JUMP ;
+: 4_21
+  1000    DELAY
+-5 JUMP ;
+: 4_30
+^E_calentamiento_force @@ 1 = IF 
+^status_motores @@ 2  >MASK NOT AND ^status_motores @! 
+^status_valvulas @@ 13  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^status_motores  -ROT D>I SWAP @!
+^status_valvulas @@ 6  I>D 1.. 2SWAP D>I 2SHIFT DNOT DAND ^status_motores  -ROT D>I SWAP @!
+0 ^E_calentamiento_force @! 
+THEN 
+-3 JUMP ;
+: 4_14
+TRUE
+  ^S_calentamiento_1 @@ 
+  3    =
+LAND
+IF -6 ELSE -7 THEN JUMP ;
+: 4_15
+TRUE
+  ^S_calentamiento_1 @@ 
+  2    =
+LAND
+IF -6 ELSE -2 THEN JUMP ;
+: 4_16
+TRUE
+  ^S_calentamiento_1 @@ 
+  1    =
+LAND
+IF -4 ELSE -2 THEN JUMP ;
+T: T4
+DUMMY
+4_0
+4_7
+4_8
+4_9
+4_21
+4_30
+4_14
+4_15
+4_16
+T;
+&Calentamiento ' T4 SETTASK
+: 5_0
+6 JUMP ;
+: 5_3
+  1000    DELAY
+-2 JUMP ;
+: 5_12
+^A_flujo @@ 22  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> ^A_Temp_TQ3 @@ ^T_ambiente @@ F> LAND  IF 
+^status_valvulas @@ 13  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= ^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  IF 
+^A_Temp_TQ3 @@ ^pcv300 @@ 100 I>F F/ ^vel_enfriamiento_p100 @@ F* ^xcv100 @@ 50 I>F F/ F* ^frec_B100 @@ 54 I>F F/ F* F- ^A_Temp_TQ3 @! 
+THEN 
+^status_valvulas @@ 12  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= ^A_flujo @@ 25  I>D 1.. 2SWAP D>I 2SHIFT DAND D0= LOR  ^A_flujo @@ 23  I>D 1.. 2SWAP D>I 2SHIFT DAND 0.. D<> LAND  IF 
+^A_Temp_TQ3 @@ ^vel_enfriamiento_p100 @@ ^xcv100 @@ 50 I>F F/ F* ^frec_B100 @@ 54 I>F F/ F* F- ^A_Temp_TQ3 @! 
+THEN 
+^A_Temp_TQ3 @@ ^pcv300 @@ 100 I>F F/ ^vel_enfriamiento_p100 @@ F* ^xcv100 @@ 50 I>F F/ F* ^frec_B100 @@ 54 I>F F/ F* F- ^A_Temp_TQ3 @! 
+THEN 
+1 JUMP ;
+: 5_13
+0 I>F ^pcv300 @! 
+0 JUMP ;
+: 5_38
+^status_resistencia @@ 0 = IF 
+^A_Temp_TQ3 @@ ^vel_enfriamiento_a @@ F- ^A_Temp_TQ3 @! 
+^A_Temp_TQ3 @@ ^T_ambiente @@ F<= IF 
+^T_ambiente @@ ^A_Temp_TQ3 @! 
+THEN 
+THEN 
+-4 JUMP ;
+: 5_228
+^E_Enfriamiento_force @@ 1 = IF 
+^status_motores @@ 1  >MASK OR ^status_motores @! 
+^status_motores @@ 4  >MASK OR ^status_motores @! 
+^status_valvulas @@ 2  I>D 1.. 2SWAP D>I 2SHIFT DOR ^status_valvulas @! 
+^status_valvulas @@ 6  I>D 1.. 2SWAP D>I 2SHIFT DOR ^status_valvulas @! 
+^status_valvulas @@ 11  I>D 1.. 2SWAP D>I 2SHIFT DOR ^status_valvulas @! 
+^status_valvulas @@ 12  I>D 1.. 2SWAP D>I 2SHIFT DOR ^status_valvulas @! 
+^status_valvulas @@ 15  I>D 1.. 2SWAP D>I 2SHIFT DOR ^status_valvulas @! 
+^status_valvulas @@ 63  I>D 1.. 2SWAP D>I 2SHIFT DOR ^status_valvulas @! 
+^status_valvulas @@ 18  I>D 1.. 2SWAP D>I 2SHIFT DOR ^status_valvulas @! 
+^status_valvulas @@ 19  I>D 1.. 2SWAP D>I 2SHIFT DOR ^status_valvulas @! 
+0 ^E_Enfriamiento_force @! 
+100 I>F ^fy100 @! 
+100 I>F ^xcv100 @! 
+5 I>F ^compresor_delay  SetTimer 
+^compresor_delay  StartTimer 
+THEN 
+^compresor_delay  T0= IF 
+^compresor_delay  StopTimer 
+100 I>F ^xcv100 @! 
+100 I>F ^fy100 @! 
+100 I>F ^xcv100 @! 
+100 I>F ^fy100 @! 
+THEN 
+0 JUMP ;
+: 5_229
+^E_Enfriamiento @@ 0 = IF 
+0 I>F ^pcv300 @! 
+ELSE 
+^E_Enfriamiento @@ 1 = IF 
+^A_Temp_TQ3 @@ ^Sp_Temp @@ F- ^E_Proporcion_PTV @@ F* 50 I>F F* ^Sp_Temp @@ F/ ^E_Error_PTV @! 
+^E_Error_PTV @@ 50 I>F F> IF 
+50 I>F ^E_Error_PTV @! 
+ELSE 
+^E_Error_PTV @@ -50 I>F F< IF 
+-50 I>F ^E_Error_PTV @! 
+THEN THEN 
+50 I>F ^E_Error_PTV @@ F+ ^pcv300 @! 
+THEN THEN 
+-5 JUMP ;
+: 5_6
+TRUE
+  ^S_enfriamiento_1 @@ 
+  1    =
+LAND
+IF -3 ELSE 0 THEN JUMP ;
+: 5_7
+TRUE
+  ^S_enfriamiento_1 @@ 
+  2    =
+LAND
+IF -7 ELSE 0 THEN JUMP ;
+: 5_8
+TRUE
+  ^S_enfriamiento_1 @@ 
+  3    =
+LAND
+IF -7 ELSE -10 THEN JUMP ;
+T: T5
+DUMMY
+5_0
+5_3
+5_12
+5_13
+5_38
+5_228
+5_229
+5_6
+5_7
+5_8
+T;
+&Enfriamiento ' T5 SETTASK
+: 0_0
+  ^T_ambiente @@   FABS
+  ^A_Temp_TQ3 @! 
+0 JUMP ;
+: 0_1
+  &C_Torre_Enfriamiento   START.T
+  ^status_chart_TorreEnfriamiento @! 
+  &C_Compresor   START.T
+  ^status_chart_C_Compresor @! 
+  &C_Indicadores_Presion   START.T
+  ^status_chart_C_IndicadoresPresion @! 
+  &C_LlenadoVaciado_TQ2   START.T
+  ^status_chart_C_TQ2 @! 
+  &C_Termometros   START.T
+  ^status_chart_C_termometros @! 
+  &C_LlenadoVaciado_TQ1   START.T
+  ^status_chart_C_TQ1 @! 
+0 JUMP ;
+: 0_8
+  &Calentamiento   START.T
+  ^status_chart_calentamiento @! 
+  &Enfriamiento   START.T
+  ^status_chart_enfriamiento @! 
+0 JUMP ;
+: 0_9
+  &A_Flujos   START.T
+  ^status_chart_Flujo @! 
+  &A_Seleccion   START.T
+  ^status_chart_seleccion @! 
+0 JUMP ;
+T: T0
+DUMMY
+0_0
+0_1
+0_8
+0_9
+T;
+&Powerup ' T0 SETTASK
+CREATE T.ARRAY
+&A_Flujos ,
+&A_Seleccion ,
+&C_Compresor ,
+&C_Indicadores_Presion ,
+&C_LlenadoVaciado_TQ1 ,
+&C_LlenadoVaciado_TQ2 ,
+&C_Termometros ,
+&C_Torre_Enfriamiento ,
+&Calentamiento ,
+&Enfriamiento ,
+&Powerup ,
+ 0 ,
+CREATE V.ARRAY
+^A_aplicar ,
+^A_ComboBox_1 ,
+^A_Datos_4 ,
+^A_flujo ,
+^A_fondo ,
+^A_seleccion_1 ,
+^A_seleccion_2 ,
+^A_seleccion_3 ,
+^A_Temp_TQ3 ,
+^A_Temp_TQ3_Max ,
+^A_TQ5 ,
+^A_tuberia ,
+^A_ventana_panel ,
+^banda_i ,
+^banda_p ,
+^banda_s ,
+^But_Start ,
+^But_Stop ,
+^C_BandaDiferencial ,
+^E_Calentamiento ,
+^E_calentamiento_force ,
+^E_Enfriamiento ,
+^E_Enfriamiento_force ,
+^E_Error_PTV ,
+^E_Proporcion_PTV ,
+^fe100 ,
+^flujo_B100 ,
+^flujo_B200 ,
+^frec_B100 ,
+^frec_B200 ,
+^fy100 ,
+^fy200a ,
+^isOnPTV ,
+^max_TQ1 ,
+^max_TQ2 ,
+^max_TQ4 ,
+^min_TQ1 ,
+^min_TQ2 ,
+^nivel_TQ1 ,
+^nivel_TQ2 ,
+^nivel_TQ4 ,
+^pcv200a ,
+^pcv300 ,
+^pi100a ,
+^pi100b ,
+^pi100c ,
+^pi200b ,
+^presion_PI100B ,
+^puc001 ,
+^puc002 ,
+^puc003 ,
+^S_calentamiento_1 ,
+^S_enfriamiento_1 ,
+^S_LlenadoTQ2_1 ,
+^Selector_panel ,
+^Sp_Temp ,
+^Sp_TQ2 ,
+^status_alarmas ,
+^status_chart_A_Timer ,
+^status_chart_C_Compresor ,
+^status_chart_C_IndicadoresPresion ,
+^status_chart_C_termometros ,
+^status_chart_C_TQ1 ,
+^status_chart_C_TQ2 ,
+^status_chart_calentamiento ,
+^status_chart_enfriamiento ,
+^status_chart_Flujo ,
+^status_chart_seleccion ,
+^status_chart_TorreEnfriamiento ,
+^status_motores ,
+^status_resistencia ,
+^status_valvulas ,
+^T_ambiente ,
+^ti300a ,
+^ti300b ,
+^ti300c ,
+^vel_calentamiento_r ,
+^vel_enfriamiento_a ,
+^vel_enfriamiento_p100 ,
+^xcv100 ,
+*_HSV_SEMA ,
+*_HSV_TEMP ,
+ 0 ,
+CREATE TI.ARRAY
+^compresor_delay ,
+^Timer_1 ,
+ 0 ,
+CREATE PTR.ARRAY
+ 0 ,
+CREATE TA.ARRAY 
+ 0 ,
+CREATE PTRTABLE.ARRAY 
+ 0 ,
+CREATE B.ARRAY
+ 0 ,
+CREATE P.ARRAY
+ 0 ,
+CREATE PID.ARRAY
+ 0 ,
+CREATE E/R.ARRAY
+ 0 ,
+CREATE E/RGROUP.ARRAY
+ 0 ,
+: CONFIG_PORTS
+;
+: W_INIT_IO
+CONFIG_PORTS
+ " Initializing variables" *_HSV_INIT_IO $MOVE
+0 ^A_aplicar @!
+0 ^A_ComboBox_1 @!
+0 ^A_Datos_4 @!
+0.. ^A_flujo @!
+0 ^A_fondo @!
+2 ^A_seleccion_1 @!
+1 ^A_seleccion_2 @!
+1 ^A_seleccion_3 @!
+25.000000 ^A_Temp_TQ3 @!
+100.00000 ^A_Temp_TQ3_Max @!
+0.00000000 ^A_TQ5 @!
+0.. ^A_tuberia @!
+0 ^A_ventana_panel @!
+0.00000000 ^banda_i @!
+0 ^banda_p @!
+0.00000000 ^banda_s @!
+0 ^But_Start @!
+0 ^But_Stop @!
+10 ^C_BandaDiferencial @!
+0.0 ^compresor_delay SetTimer
+0 ^E_Calentamiento @!
+0 ^E_calentamiento_force @!
+0 ^E_Enfriamiento @!
+0 ^E_Enfriamiento_force @!
+0.00000000 ^E_Error_PTV @!
+1.0000000 ^E_Proporcion_PTV @!
+0.00000000 ^fe100 @!
+0.00000000 ^flujo_B100 @!
+0.00000000 ^flujo_B200 @!
+60.000000 ^frec_B100 @!
+60.000000 ^frec_B200 @!
+0.00000000 ^fy100 @!
+0.00000000 ^fy200a @!
+1136.0000 ^max_TQ1 @!
+302.82999 ^max_TQ2 @!
+50.000000 ^max_TQ4 @!
+100.00000 ^min_TQ1 @!
+0.00000000 ^min_TQ2 @!
+1000.0000 ^nivel_TQ1 @!
+20.000000 ^nivel_TQ2 @!
+0.00000000 ^nivel_TQ4 @!
+0.00000000 ^pcv200a @!
+0.00000000 ^pcv300 @!
+0.00000000 ^pi100a @!
+0.00000000 ^pi100b @!
+0.00000000 ^pi100c @!
+0.54000002 ^pi200b @!
+0.00000000 ^presion_PI100B @!
+0.00000000 ^puc001 @!
+0.00000000 ^puc002 @!
+0.00000000 ^puc003 @!
+2 ^S_calentamiento_1 @!
+2 ^S_enfriamiento_1 @!
+2 ^S_LlenadoTQ2_1 @!
+3 ^Selector_panel @!
+50.000000 ^Sp_Temp @!
+160.00000 ^Sp_TQ2 @!
+0 ^status_alarmas @!
+0 ^status_chart_A_Timer @!
+0 ^status_chart_C_Compresor @!
+0 ^status_chart_C_IndicadoresPresion @!
+0 ^status_chart_C_termometros @!
+0 ^status_chart_C_TQ1 @!
+0 ^status_chart_C_TQ2 @!
+0 ^status_chart_calentamiento @!
+0 ^status_chart_enfriamiento @!
+0 ^status_chart_Flujo @!
+0 ^status_chart_seleccion @!
+0 ^status_chart_TorreEnfriamiento @!
+0 ^status_motores @!
+0 ^status_resistencia @!
+0.. ^status_valvulas @!
+27.000000 ^T_ambiente @!
+0.00000000 ^ti300a @!
+0.00000000 ^ti300b @!
+0.00000000 ^ti300c @!
+0.0 ^Timer_1 SetTimer
+0.017999999 ^vel_calentamiento_r @!
+0.0010000000 ^vel_enfriamiento_a @!
+0.039999999 ^vel_enfriamiento_p100 @!
+0.00000000 ^xcv100 @!
+ " " *_HSV_INIT_IO $MOVE
+;
+T: T_INIT_IO
+W_INIT_IO
+&Powerup START.T DROP
+T;
+&_INIT_IO ' T_INIT_IO  SETTASK
+   : _RUN
+   CLEARERRORS
+   &_INIT_IO START.T DROP
+   ;
+: DATESTAMP ." 12/05/24 " ;
+: TIMESTAMP ." 21:30:07 " ;
+: CRCSTAMP  ." 255441CBE0BD72A3CCB9E51EF9ACF581 " ;
+MAKECHECK
+CLEAR.BREAKS
+
+\ ********************** INC File **********************
+
+1 ^isOnPTV @!
+\ ""DOWNLOAD_COMPRESSION_OFF
